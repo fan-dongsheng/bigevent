@@ -4,7 +4,7 @@ var user={
 
     login:function(username,password,callback){
 
-        $.post(baseUrl+'admin/login',
+        $.post(APIURLS.user_login,
         {
             //这里传的是用户输入的 数据,才能判断;用户自己的数据上传到服务器;请求;
             user_name:username,
@@ -22,7 +22,7 @@ var user={
 },
     logout:function(callback){
 
-    $.post(baseUrl+'admin/logout',
+    $.post(APIURLS.user_logout,
     function(res){
 
         callback(res);
@@ -36,7 +36,7 @@ var user={
 //获取用户信息;
     getInfo:function(callback){
 
-        $.get(baseUrl+'admin/getuser',
+        $.get(APIURLS.user_getInfo,
         function(res){
 
 callback(res);
