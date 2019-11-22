@@ -7,5 +7,6 @@ var APIURLS={
     user_getInfo:baseUrl+'admin/getuser',
     categoryShow:baseUrl+'admin/category_search',
 
+        categoryDel:baseUrl+'admin/category_delete',
 
 }

@@ -8,5 +8,14 @@ var category={
             callback(res)
         })
         
+    },
+    del:function(id,callback){
+
+        $.post(APIURLS.categoryDel,{id:id},function(res){
+            callback(res)
+
+        })
+
     }
+
 }
