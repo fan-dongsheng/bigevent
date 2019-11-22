@@ -16,6 +16,12 @@ var category={
 
         })
 
+    },
+    add:function(name,slug,callback){
+
+        $.post(APIURLS.categoryAdd,{"name":name,"slug":slug},function(res){
+            callback(res);
+        })
     }
 
 }

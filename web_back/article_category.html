@@ -42,7 +42,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="3" class="text-center">
-                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#addModal">新增分类</a>
+                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#addModal" >新增分类</a>
                         </td>
                     </tr>
                 </tfoot>
@@ -149,6 +149,36 @@
 
 
 
+    //实现添加;
+    //因为他有自己的点击插件,所以直接复制过来使用就可以
+    $('#model_add').click(function(){
+        // 关闭模态框
+        // $('#addModal').modal('hide');
+        alert(1)
+        //添加需要的参数  name  slug;需要获取这两个值;cate_name   cate_slug
+        var name=$('#cate_name').val().trim();
+        var slug=$('#cate_slug').val().trim();
+        console.log(name,slug);
+        //获取到之后,需要请求接口,调用;post接口, 需要去js里面添加引用文件;config.js   和 category.js中;
+        category.add(name,slug,function(res){
+            console.log(res);
+            if(res.code===200){
+                getAndShow();
+                $('#cate_name').val('')
+                $('#cate_slug').val('')
+                $('#addModal').modal('hide');
+            }
+            
+        })
+
+        
+    })
+
+
+
+
+
+    //实现删除
       //通过ID 删除数据; 先获取ID  因为是动态创建  所以用事件委托 找到父元素,添加事件,
       //再找a标签的删除的 id   没有就自定义一个id;
 

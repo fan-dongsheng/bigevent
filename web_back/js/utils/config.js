@@ -8,5 +8,6 @@ var APIURLS={
     categoryShow:baseUrl+'admin/category_search',
 
         categoryDel:baseUrl+'admin/category_delete',
+        categoryAdd:baseUrl+'admin/category_add',
 
 }
