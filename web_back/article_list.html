@@ -139,7 +139,7 @@
 
         <td class="text-center">
             <a href="article_edit.html" class="btn btn-default btn-xs">编辑</a>
-            <a href="javascript:deleteTr( 1005 );" class="btn btn-danger btn-xs">删除</a>
+            <a href="javascript:;" class="btn btn-danger btn-xs del" data-id='{{item.id}}'>删除</a>
         </td>
     </tr>
 
@@ -254,6 +254,30 @@
     } 
 
 
+    
+    //文章删除;
+    //动态添加的 事件委托; 删除a标签,由于许多a 所以不能用id;
+    $('#tableContainer').on('click','.del',function(){
+        if(window.confirm('你确定要删除吗?')===false){
+            return;
+        }
+        //获取id;
+        var id=$(this).attr('data-id')
+        //请求接口;
+        article.del(id,function(res){
+            console.log(res);
+            if(res.code===200){
+            getAndshow();
+            }
+        })
+
+    })
+    
+    
+    
+    
+    
+    
     //筛选功能
     //先筛选分类,需要获取分类的val值;然后再发请求;
     //添加点击筛选事件;

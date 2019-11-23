@@ -12,5 +12,6 @@ var APIURLS={
         categoryEdit:baseUrl+'admin/category_edit',
 //文章搜索地址
         article_show:baseUrl+'admin/search',
+        article_del:baseUrl+'admin/article_delete',
 
 }
