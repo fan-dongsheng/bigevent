@@ -28,6 +28,7 @@ var category={
 
             callback(res);
         })
-    }
+    },
+    
 
 }
