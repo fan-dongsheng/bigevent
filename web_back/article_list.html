@@ -27,9 +27,9 @@
                            
                         </select>
                         <select id="selStatus" name="" class="form-control input-sm">
-                            <option>所有状态</option>
-                            <option value="drafted">草稿</option>
-                            <option value="published">已发布</option>
+                            <option value=''>所有状态</option>
+                            <option value="草稿">草稿</option>
+                            <option value="已发布">已发布</option>
                         </select>
                         <button id="btnSearch"  type="button"  class="btn btn-default btn-sm">筛选</button>
                     </form>
@@ -173,7 +173,8 @@
 
         var curPage=1; //定义一个全局的page,用来保存当前的page;需要在函数中 让page赋值给curpage;
         var type=''; //当前要搜索的文章类型;
-           
+        var state=''  //  当前需要筛选的状态
+        var curTotalPage = ''; // 当前查询的总页数,,,  
             // console.log(curPage);
             
 
@@ -187,6 +188,7 @@
             //首先做的就是  调用数据看看数据有什么内容;
             article.show({page:curPage,
                         type:type,
+                        state:state,
                             },function(res){
 
             // console.log(res);
@@ -200,6 +202,18 @@
             }
 
             // 显示分页效果,这是插件;格式;
+
+            //这里需要解决一个筛选的bug,筛选的时候,当前总页数发生改变的时候, 点击筛选实际总页数不会改变;
+            //这里是分页功能的bug,需要用插件本身的方法解决;判断res返回的页数和上一次的页数是否相等,不相等就销毁;
+            //然后再赋值给当前的页数;
+            //curTotalPage 这个值是上一次的总页数,为了和本次作对比;
+            if(res.totalPage!=curTotalPage){
+                //这是销毁分页插件,
+                $('#pagination').twbsPagination('destroy');
+                    //添加全局变量curTotalPage 为空,
+                    curTotalPage=res.totalPage;
+
+            }
            
 
             $('#pagination').twbsPagination({
@@ -251,6 +265,12 @@
         //获取id;需要在 table 下拉标签中 加入 value=item.id参数;
         //请求
        type=$('#selCategory').val(); //获取的id
+       state=$('#selStatus').val(); //获取状态state参数;
+       console.log(state);
+       //state参数传入接口 发请求;
+
+       //筛选要从第一页开始筛选;避免出现bug,总页数与上一次不一样;
+       curPage=1;
 
        getAndshow();
 
