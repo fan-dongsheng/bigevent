@@ -22,6 +22,12 @@ var category={
         $.post(APIURLS.categoryAdd,{"name":name,"slug":slug},function(res){
             callback(res);
         })
+    },
+    edit:function(id,name,slug,callback){
+        $.post(APIURLS.categoryEdit,{'id':id,'name':name,'slug':slug},function(res){
+
+            callback(res);
+        })
     }
 
 }
